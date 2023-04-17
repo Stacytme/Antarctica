@@ -1,12 +1,13 @@
 import gulp from 'gulp';
+import {dist} from './constants.mjs';
 
 const copySvg = () =>
   gulp.src('source/img/**/*.svg', {base: 'source'})
-      .pipe(gulp.dest('build'));
+      .pipe(gulp.dest(dist));
 
 const copyImages = () =>
   gulp.src('source/img/**/*.{png,jpg,webp}', {base: 'source'})
-      .pipe(gulp.dest('build'));
+      .pipe(gulp.dest(dist));
 
 const copy = () =>
   gulp.src([
@@ -17,6 +18,6 @@ const copy = () =>
   ], {
     base: 'source',
   })
-      .pipe(gulp.dest('build'));
+      .pipe(gulp.dest(dist));
 
 export {copy, copyImages, copySvg};

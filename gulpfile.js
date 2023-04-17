@@ -1,19 +1,20 @@
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
 import del from 'del';
+import {dist} from './gulp/constants.mjs';
 import styles from './gulp/compileStyles.mjs';
-import { copy, copyImages, copySvg } from './gulp/copyAssets.mjs';
+import {copy, copyImages, copySvg} from './gulp/copyAssets.mjs';
 import js from './gulp/compileScripts.mjs';
 import {optimizeSvg, sprite, createWebp, optimizePng, optimizeJpg} from './gulp/optimizeImages.mjs';
 
 const server = browserSync.create();
 const streamStyles = () => styles().pipe(server.stream());
 
-const clean = () => del('build');
+const clean = () => del(dist);
 
 const syncServer = () => {
   server.init({
-    server: 'build/',
+    server: dist,
     index: 'sitemap.html',
     notify: false,
     open: true,
